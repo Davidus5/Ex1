@@ -33,7 +33,7 @@ public class Ex1 {
          */
         public static boolean isNumber(String a) {
             boolean ans = true;
-            // add your code here
+            // add your code here.
             String valid = "23456789ABCDEFG";
             int index = a.indexOf('b');
             String base, num;
