@@ -37,11 +37,52 @@ public class Ex1Test {
         @Test
         void int2NumberTest() {
            // implement this test
+            assertEquals("101b2", Ex1.int2Number(5, 2), "5 in base 2 should be '101b2'");
+            assertEquals("15b10", Ex1.int2Number(15, 10), "15 in base 10 should be '15b10'");
+            assertEquals("FAb16", Ex1.int2Number(250, 16), "250 in base 16 should be 'FAb16'");
+            assertEquals("100b4", Ex1.int2Number(16, 4), "16 in base 4 should be '100b4'");
+            assertEquals("0b2", Ex1.int2Number(0, 2), "0 in base 2 should be '0b2'");
+            // Test invalid inputs
+            assertEquals("", Ex1.int2Number(-1, 10), "Negative numbers should return an empty string");
+            assertEquals("", Ex1.int2Number(10, 1), "Base less than 2 should return an empty string");
+            assertEquals("", Ex1.int2Number(10, 17), "Base greater than 16 should return an empty string");
+
+            // Test edge cases
+            assertEquals("1b2", Ex1.int2Number(1, 2), "1 in base 2 should be '1b2'");
+            assertEquals("A00b16", Ex1.int2Number(2560, 16), "2560 in base 16 should be 'A00b16'");
+            assertEquals("1111b2", Ex1.int2Number(15, 2), "15 in base 2 should be '1111b2'");
+
+
+
+
         }
         @Test
         void maxIndexTest() {
-            // implement this test
-        }
+            // implement this
+            // Test with valid arrays
+            String[] arr1 = {"101b2", "111b2", "10b2"}; // Values: 5, 7, 2 in decimal
+            assertEquals(1, Ex1.maxIndex(arr1), "The maximum value is at index 1 (111b2)");
 
-        // Add additional test functions - test as much as you can.
-    }
+            String[] arr2 = {"A0b16", "9b10", "5b8"}; // Values: 160, 9, 5 in decimal
+            assertEquals(0, Ex1.maxIndex(arr2), "The maximum value is at index 0 (A0b16)");
+
+            String[] arr3 = {"10b2", "10b2", "10b2"}; // All values are equal (2 in decimal)
+            assertEquals(0, Ex1.maxIndex(arr3), "When all values are equal, the first index should be returned");
+
+            String[] arr4 = {"1b2", "1b3", "1b16"}; // Values: 1, 1, 1 in decimal
+            assertEquals(0, Ex1.maxIndex(arr4), "All values are equal, return the first index");
+
+            // Test with a single-element array
+            String[] arr5 = {"101b2"}; // Value: 5 in decimal
+            assertEquals(0, Ex1.maxIndex(arr5), "With a single element, the index should be 0");
+
+            String[] arr6 = {};
+            try {
+                Ex1.maxIndex(arr6);
+                fail("An exception should be thrown for an empty array");
+            } catch (ArrayIndexOutOfBoundsException e) {
+                // Test passes, as this behavior is expected
+            }
+            // Add additional test functions - test as much as you can.
+
+        }
