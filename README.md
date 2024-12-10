@@ -33,3 +33,6 @@ b2
 0b1
 123b
 1234b11
+Acknowledgments
+Inspired by the assignment description provided in this document.
+Built for educational purposes to explore string manipulation and base conversions in Java.
