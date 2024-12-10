@@ -21,22 +21,23 @@ public class Ex1 {
      * @return
      */
     public static int number2Int(String num) {
-        int ans = 0;
+        int ans = 0;// Initialize the result variable
         // add your code here
+
         String[] parts = num.split("b");
-        String numberPart = parts[0];
-        String base = parts[1];
-        String valid = "0123456789ABCDEF";
-        int true_base = valid.indexOf(base.toCharArray()[0]);
-        int len = numberPart.length();
-        for(int i = 0; i<len; i++)
+        String numberPart = parts[0];// The number part of the input
+        String base = parts[1];// The base part of the input
+        String valid = "0123456789ABCDEF";// A valid character set for bases up to 16
+        int true_base = valid.indexOf(base.toCharArray()[0]);// Determines the numerical value of the base
+        int len = numberPart.length();// The length of the number part
+        for(int i = 0; i<len; i++)// Iterates over each digit in the number part
         {
-            int k = valid.indexOf(numberPart.toCharArray()[i]);
-            ans += (int) (k*Math.pow(true_base, (len - i - 1)));
+            int k = valid.indexOf(numberPart.toCharArray()[i]);// Converts each character to its decimal equivalent
+            ans += (int) (k*Math.pow(true_base, (len - i - 1)));// Calculates the decimal value of the digit
         }
 
         ////////////////////
-        return ans;
+        return ans;// Returns the calculated decimal value
     }
 
 
@@ -47,35 +48,37 @@ public class Ex1 {
      * @return true iff the given String is in a number format
      */
     public static boolean isNumber(String a) {
-        boolean ans = true;
+        boolean ans = true;// Initialize the result variable to true
         // add your code here.
-        String valid = "23456789ABCDEFG";
-        int index = a.indexOf('b');
-        String base, num;
+
+        String valid = "23456789ABCDEFG";// Valid base characters excluding base 1
+        int index = a.indexOf('b');// Finds the position of 'b' in the input string
+        String base, num;// Variables to store the base and number parts
 
 
+        // Checks for basic validity: 'b' is present, occurs only once, and is at the correct position
         if (index != -1 && index == a.lastIndexOf('b') && a.lastIndexOf('b') == a.length() - 2
                 && index != 0) {
-            base = a.split("b")[1];
+            base = a.split("b")[1];// Extracts the base part
 
-            if (!valid.contains(base)) {
+            if (!valid.contains(base)) {// Redefines valid characters based on the base
                 return false;
             }
-            valid = "0123456789ABCDEFG";
-            num = a.split("b")[0];
-            valid = valid.split(base)[0];
-            for (int i = 0; i < num.length(); i++) {
-                char b = num.charAt(i);
-                if (valid.indexOf(b) == -1) {
+            valid = "0123456789ABCDEFG";// Reset valid characters for the number part
+            num = a.split("b")[0];// Extracts the number part
+            valid = valid.split(base)[0];// Redefines valid characters based on the base
+            for (int i = 0; i < num.length(); i++) {// Iterates over each character in the number part
+                char b = num.charAt(i);// Extracts the current character
+                if (valid.indexOf(b) == -1) {// Checks if the character is valid
                     return false;
                 }
             }
         } else {
-            return false;
+            return false;// Returns false if the format is invalid
         }
 
         ////////////////////
-        return ans;
+        return ans;// Returns true if all checks pass
     }
 
     /**
@@ -90,20 +93,22 @@ public class Ex1 {
     public static String int2Number(int num, int base) {
         //String ans = "";
         // add your code here
-        String valid = "0123456789ABCDEFG";
+        String valid = "0123456789ABCDEFG";// Valid character set for bases up to 16
 
-        if (num < 0 || base < 2 || base > 16) {
+        if (num < 0 || base < 2 || base > 16) {// Validates input parameters
             return ""; // Return an empty string for invalid input
         }
         StringBuilder ans = new StringBuilder();
-        while (num > 0) {
+        // Initializes a StringBuilder to construct the result
+
+        while (num > 0) {// Loops until all digits are processed
             int remainder = num % base;// Find the remainder when num is divided by base
             // Determine the character for the current digit:
             // - '0' to '9' for values 0–9
             // - 'A' to 'F' for values 10–1
             char digit = (char) (remainder < 10 ? '0' + remainder : 'A' + (remainder - 10));
-            ans.append(digit);
-            num /= base;
+            ans.append(digit); // Appends the digit to the result
+            num /= base;// Reduces num by dividing it by the base
         }
         // Reverse the result since the digits are generated in reverse order
         return ans.reverse().toString() + 'b' + valid.charAt(base);
@@ -123,6 +128,7 @@ public class Ex1 {
         public static boolean equals(String n1, String n2)
         {
             return number2Int(n1) == number2Int(n2);
+            // Compares the decimal representations of the numbers
         }
 
 
@@ -135,16 +141,17 @@ public class Ex1 {
      * @return the index in the array in with the largest number (in value).
      */
     public static int maxIndex(String[] arr) {
-        int ans = 0;
-        int value2, maxValue;
+        int ans = 0;// Initializes the result variable to the first index
+        int value2, maxValue;// Variables to store the current value and maximum value
         // add your code here
-        maxValue = number2Int(arr[0]);
-        for(int i = 0; i < arr.length - 1; i++) {
-            value2 = number2Int(arr[i+1]);
-            if(maxValue < value2)
+
+        maxValue = number2Int(arr[0]);// Sets the maximum value to the first number
+        for(int i = 0; i < arr.length - 1; i++) {// Iterates through the array
+            value2 = number2Int(arr[i+1]);// Gets the value of the next number
+            if(maxValue < value2)// Compares the current max with the next number
             {
-                ans = i+1;
-                maxValue = value2;
+                ans = i+1;// Updates the index of the largest number
+                maxValue = value2;// Updates the maximum value
             }
         }
         ////////////////////
