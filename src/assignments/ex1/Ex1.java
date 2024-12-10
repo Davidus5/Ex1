@@ -37,7 +37,7 @@ public class Ex1 {
         }
 
         ////////////////////
-        return ans;// Returns the calculated decimal value
+        return ans;// Returns the calculated decimal value.
     }
 
 
