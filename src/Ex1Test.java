@@ -58,7 +58,7 @@ public class Ex1Test {
         }
         @Test
         void maxIndexTest() {
-            // implement this
+            // implement this test
             // Test with valid arrays
             String[] arr1 = {"101b2", "111b2", "10b2"}; // Values: 5, 7, 2 in decimal
             assertEquals(1, Ex1.maxIndex(arr1), "The maximum value is at index 1 (111b2)");
@@ -76,13 +76,17 @@ public class Ex1Test {
             String[] arr5 = {"101b2"}; // Value: 5 in decimal
             assertEquals(0, Ex1.maxIndex(arr5), "With a single element, the index should be 0");
 
+            // Test edge cases with empty array (optional, based on design)
             String[] arr6 = {};
-            try {
+            try{
                 Ex1.maxIndex(arr6);
                 fail("An exception should be thrown for an empty array");
             } catch (ArrayIndexOutOfBoundsException e) {
-                // Test passes, as this behavior is expected
+
             }
-            // Add additional test functions - test as much as you can.
+
 
         }
+
+        // Add additional test functions - test as much as you can.
+    }
